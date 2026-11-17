@@ -1,105 +1,76 @@
-# 🏠 Real Estate Management – PHP & MySQL
+<div align="center">
 
-A simple PHP-based real estate website for listing, browsing, and managing properties.  
-Built with plain PHP, HTML/CSS and MySQL it provides user registration, login, CRUD operations on property listings, appointment booking and sales/offers tracking.
+# 🏠 Emlak Otomasyonu — PHP & MySQL
 
----
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](#)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](#)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](#)
 
-## 🖥️ Running locally (XAMPP)
+Saf **PHP**, **HTML/CSS** ve **MySQL** kullanılarak geliştirilmiş emlak ilan, müşteri/danışman yönetimi, randevu ve teklif takip otomasyonu.
 
-```
-http://localhost/Website/
-```
----
-
-## 🚀 Feature overview
-
-* **Authentication**
-
-  * Agent sign‑up (`kayit.php`) & login (`giris.php`)
-  * Customer sign‑up (`müşterikayit.php`) & login (`müşterigiriş.php`)
-  * Session‑based access, logout with `cikis.php`
-* **Listings**
-
-  * Add / edit / delete from **Mülklerim** (`mulkler.php`, modal‑based)
-  * Public catalogue & detail view (`index.php`, `detay.php`)
-* **Offers & Appointments**
-
-  * Submit offers (`teklifler.php`)
-  * Book viewings (`randevular.php`)
-  * Sale / rental finalisation (`satin_alım` trigger + `satislar.php`)
-* **Personal dashboard**
-
-  * KPI cards, latest customers & appointments (`acilis.php`)
-  * Profile management (`profil.php`)
+</div>
 
 ---
 
-## 📂 Folder map
+## ✨ Öne Çıkan Özellikler
 
-```
-Database/
-   └─ realestate.sql    # Full MySQL dump (indexes, views, triggers, data)
-Website/
-├─ acilis.php           # Agent dashboard
-├─ baglanti.php         # DB connection helper
-├─ index.php            # Public landing / catalogue
-│
-├─ giris.php            # Agent login
-├─ kayit.php            # Agent sign‑up
-├─ cikis.php            # Logout (destroys session)
-│
-├─ müşterigiriş.php     # Customer login
-├─ müşterikayit.php     # Customer sign‑up
-│
-├─ mulkler.php          # Agent listing CRUD
-├─ ilan_duzenle.php     # Edit a listing
-├─ ilan_sil.php         # Delete a listing
-│
-├─ teklifler.php        # Incoming offers
-├─ randevular.php       # Appointments calendar
-├─ satislar.php         # Sales / rentals history
-│
-├─ detay.php            # Single‑property detail page
-├─ profil.php           # Agent profile & password change
-│
-├─ css/
-   └─ index.css         # Shared style additions
+* **🔐 Kimlik Doğrulama & Rol Ayrımı**
+  * Danışman kayıt (`kayit.php`) ve giriş (`giris.php`)
+  * Müşteri kayıt (`müşterikayit.php`) ve giriş (`müşterigiriş.php`)
+  * Oturum tabanlı erişim kontrolü ve çıkış (`cikis.php`)
+* **🏘️ İlan Yönetimi (CRUD)**
+  * Danışman panelinden modal tabanlı ilan ekleme, düzenleme ve silme (`mulkler.php`, `ilan_duzenle.php`, `ilan_sil.php`)
+  * Genel ilan kataloğu ve detay sayfası (`index.php`, `detay.php`)
+* **📅 Teklif, Randevu ve Satış Takibi**
+  * İlanlara teklif verme ve yönetme (`teklifler.php`)
+  * Gösterim randevusu oluşturma (`randevular.php`)
+  * Veritabanı tetikleyicisi (`trigger`) destekli satış/kiralama sonuçlandırma (`satislar.php`)
+* **📊 Danışman Kontrol Paneli**
+  * Özet KPI kartları, son müşteriler ve yaklaşan randevular (`acilis.php`)
+  * Profil yönetimi (`profil.php`)
+
+---
+
+## 📂 Proje Yapısı
+
+```text
+emlak-otomasyonu/
+├── Database/
+│   ├── realestate.sql              # Tablolar, indeksler, view ve trigger içeren MySQL dökümü
+│   ├── realestate-ER-diagram.png   # Veritabanı ER diyagramı
+│   └── realestate.pdf              # Veritabanı dokümantasyonu
+├── Website/
+│   ├── index.php                   # Ana ilan kataloğu
+│   ├── detay.php                   # İlan detay sayfası
+│   ├── acilis.php                  # Danışman kontrol paneli
+│   ├── mulkler.php                 # İlan yönetimi (CRUD)
+│   ├── teklifler.php               # Teklif takibi
+│   ├── randevular.php              # Randevu yönetimi
+│   ├── satislar.php                # Satış kayıtları
+│   ├── profil.php                  # Profil ayarları
+│   ├── baglanti.php                # Veritabanı bağlantısı
+│   ├── css/ & img/                 # Arayüz stilleri ve görseller
+└── 118_rapor.pdf                   # Proje raporu
 ```
 
 ---
 
-## ⚙️ Prerequisites
+## 🚀 Kurulum (XAMPP / Yerel Sunucu)
 
-* **XAMPP** (PHP ≥ 8.1, MySQL / MariaDB)
-* Any modern browser
-
----
-
-## 💿 Installation
-
-1. **Clone** into XAMPP `htdocs`:
-
+1. Depoyu XAMPP'in `htdocs/` klasörüne klonlayın:
+   ```bash
+   git clone https://github.com/EmirKaraman24/emlak-otomasyonu.git
    ```
-   C:\xampp\htdocs\Website\
+2. **phpMyAdmin** üzerinden yeni bir veritabanı oluşturun ve `Database/realestate.sql` dosyasını içe aktarın.
+3. `Website/baglanti.php` içindeki MySQL bağlantı bilgilerini kendi ortamınıza göre güncelleyin.
+4. Tarayıcıdan projeyi açın:
+   ```text
+   http://localhost/emlak-otomasyonu/Website/
    ```
-2. **Create DB & import schema**
-
-   * In phpMyAdmin make a DB called **`realestate`**.
-   * Import `Database/realestate.sql`.
-3. **Configure credentials (Optional)** (`baglanti.php`):
-
-   ```php
-   $host = 'localhost';
-   $kullanici = 'root';
-   $parola = '';
-   $vt   = 'realestate';
-   ```
-4. **Browse** to [http://localhost/Website/](http://localhost/Website/)
-   * Register an agent or a customer and you’re set!
 
 ---
 
-## 📝 License
+## 📄 Lisans
 
-Released under the **MIT License**.
+Bu proje [MIT Lisansı](LICENSE) altında sunulmaktadır.
